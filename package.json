@@ -1,0 +1,26 @@
+{
+  "name": "beginning-men-stack",
+  "version": "1.0.0",
+  "description": "code following the book 'Beginning Node.js, Express &amp; MongoDB Development' by GregLim",
+  "main": "index.js",
+  "scripts": {
+  	"start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyentruong17/beginning-men-stack.git"
+  },
+  "author": "greg lim, nguyen truong",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyentruong17/beginning-men-stack/issues"
+  },
+  "homepage": "https://github.com/nguyentruong17/beginning-men-stack#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
