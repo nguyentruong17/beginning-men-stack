@@ -26,19 +26,19 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <% allBlogs.map(blog => { %>
+        <% allPosts.map(post => { %>
         <div class="post-preview">
-          <a href="/post/<%= blog._id%>">
+          <a href="/post/<%= post._id%>">
             <h2 class="post-title">
-              <%= blog.title %>
+              <%= post.title %>
             </h2>
             <h3 class="post-subtitle">
-              <%= blog.body %>
+              <%= post.body %>
             </h3>
           </a>
           <p class="post-meta">Posted by
-            <a href="#"><%= blog.username %></a>
-            on <%= blog.created_at.toDateString() %></p>
+            <a href="#"><%= post.username %></a>
+            on <%= post.created_at.toDateString() %></p>
         </div>
         <% }) %>
         <!-- Pager -->
