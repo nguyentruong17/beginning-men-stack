@@ -1,0 +1,12 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!about-bg.jpg
+!contact-bg.jpg
+!create.jpg
+!home-bg.jpg
+!post-bg.jpg
+!post-default.jpg
+!post-sample-image.jpg
