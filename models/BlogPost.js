@@ -11,6 +11,10 @@ const BlogPostSchema = new Schema({ //schema represents how a collection looks l
     username: {
         type: String,
         default: 'Haruki Murakami'
+    },
+    image: {
+        type: String,
+        default: '/img/post-default.jpg' //https://neilpatel.com/blog/a-blog-isnt-a-blog-its-a-business/
     }
 })
 
