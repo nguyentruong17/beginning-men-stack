@@ -11,8 +11,9 @@ mongoose.connect("mongodb://localhost/my_database", {
   useFindAndModify: false,
 });
 
-const { newPost, createPost, getAllPosts, getPostById } = require("./controllers/BlogPost")
+const { newPost, createPost, getAllPosts, getPostById } = require("./controllers/BlogPosts")
 const validateMiddleWare = require('./middlewares/validate')
+const { newUserPage, loginUserPage, registerUser, logInUser } = require('./controllers/Users')
 
 app.set("view engine", "ejs"); //teling express to use ejs as templating engine (any file ending with .ejs would be rendered with ejs engine)
 app.use(express.static("public")); //register a public folder in our static files
@@ -28,14 +29,11 @@ app.listen(4000, () => {
 
 app.get("/", getAllPosts);
 
-app.get("/about", (req, res) => {
-  //res.sendFile(path.resolve(__dirname, 'pages/about.html'))
-  res.render("about");
-});
+app.get('/auth/register', newUserPage)
+app.post('/users/store', registerUser)
 
-app.get("/contact", (req, res) => {
-  res.render("contact");
-});
+app.get('/auth/login', loginUserPage)
+app.post('/users/auth', logInUser)
 
 app.get("/post/:postId", getPostById);
 
