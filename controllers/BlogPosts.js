@@ -31,6 +31,7 @@ const createPost = async (req, res) => {
 const getAllPosts = async (req, res) => {
   //res.sendFile(path.resolve(__dirname, 'pages/index.html'))
   const allPosts = await BlogPost.find({});
+  //console.log(req.session)
   //ejs engine will look into the folder 'views' and helps rendering the file index.ejs
   res.render("index", { allPosts }); //now, index.ejs has access to the allBlogs variable
 };
