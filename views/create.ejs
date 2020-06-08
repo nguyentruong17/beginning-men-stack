@@ -27,13 +27,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <% if(errors && errors.length > 0){ %>
-        <ul class="list-group"></ul>
-        <% errors.map(err => { %>
-        <li class="list-group-item list-group-item-danger"><%= err %></li>
-        <% }) %>
-        </ul>
-        <% } %>
+        <%-include('errors');-%>
         <form name="createPost" id="createPostForm" action='/posts/store' method='POST' enctype="multipart/form-data"
           novalidate>
           <div class="control-group">
@@ -49,6 +43,13 @@
               <label>Body</label>
               <textarea rows="5" class="form-control" placeholder="Body" id="body" name='body' required
                 data-validation-required-message="Please enter the body."></textarea>
+              <script>
+                $('#body').summernote({
+                  placeholder: 'Hello bootstrap 4',
+                  tabsize: 2,
+                  height: 200
+                });
+              </script>
               <p class="help-block text-danger"></p>
             </div>
             <div class="control-group">

@@ -6,7 +6,7 @@ const newPost = (req, res) => {
   //console.log('NEW')
   
   //console.log(req.flash(VALIDATION_ERR_KEY))
-  res.render("create", { errors: req.flash(VALIDATION_ERR_KEY) });
+  res.render("create", { errors: req.flash(VALIDATION_ERR_KEY), showEditor: true });
 };
 
 const createPost = async (req, res) => {
@@ -25,12 +25,14 @@ const createPost = async (req, res) => {
         image: `/img/${imageName}`,
         userid
       });
+      res.redirect("/");
     });
   } else {
     await BlogPost.create({ ...req.body, userid });
+    res.redirect("/");
   }
 
-  res.redirect("/");
+  
 };
 
 const getAllPosts = async (req, res) => {
