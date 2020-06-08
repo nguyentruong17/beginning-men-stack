@@ -7,7 +7,8 @@ const expressSession = require("express-session");
 const flash = require("connect-flash") //store messages between requests and flush them after the next request is called
 
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost/my_database", {
+const userConfig = require("./config")
+mongoose.connect(`mongodb+srv://${userConfig.username}:${userConfig.password}@cluster0-wm8kw.mongodb.net/my_database`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,

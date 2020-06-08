@@ -13,24 +13,35 @@ const createPost = async (req, res) => {
   //console.log('CREATE')
   const userid = req.session.userId
 
-  if (req.files) {
-    let image = req.files.image;
-    const name = image.name.split(".")[0];
-    const type = image.name.split(".")[1];
-    const imageName = `${name}${uuidv4()}.${type}`;
-    image.mv(path.resolve(__dirname, '..', "public/img", imageName), async (err) => {
-      //moving the image to public/img with the imageName name
-      await BlogPost.create({
-        ...req.body,
-        image: `/img/${imageName}`,
-        userid
-      });
-      res.redirect("/");
-    });
-  } else {
-    await BlogPost.create({ ...req.body, userid });
-    res.redirect("/");
+  const storePost = async () => {
+    if (req.files) {
+      let image = req.files.image;
+      const name = image.name.split(".")[0];
+      const type = image.name.split(".")[1];
+      const imageName = `${name}${uuidv4()}.${type}`;
+      try {
+        //moving the image to public/img with the imageName name
+        await image.mv(path.resolve(__dirname, '..', "public/img", imageName))
+        await BlogPost.create({
+          ...req.body,
+          image: `/img/${imageName}`,
+          userid
+        });
+        
+      } catch (err) {
+        console.log(err)
+        res.redirect("/posts/new");
+      }
+       
+    } else {
+      await BlogPost.create({ ...req.body, userid });
+    }
+
   }
+
+  await storePost()
+  res.redirect("/"); 
+
 
   
 };
@@ -46,7 +57,6 @@ const getAllPosts = async (req, res) => {
 const getPostById = async (req, res) => {
   //res.sendFile(path.resolve(__dirname, 'pages/post.html'))
   const blogPost = await BlogPost.findById(req.params.postId).populate('userid');
-  console.log(blogPost)
   res.render("post", { blogPost });
 };
 
