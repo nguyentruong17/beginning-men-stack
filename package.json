@@ -13,6 +13,9 @@
   },
   "author": "greg lim, nguyen truong",
   "license": "ISC",
+  "engines":{
+    "node": "12.10.0"
+  },
   "bugs": {
     "url": "https://github.com/nguyentruong17/beginning-men-stack/issues"
   },

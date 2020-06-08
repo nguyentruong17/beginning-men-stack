@@ -8,7 +8,7 @@ const flash = require("connect-flash") //store messages between requests and flu
 
 const mongoose = require("mongoose");
 const userConfig = require("./config")
-mongoose.connect(`mongodb+srv://${userConfig.username}:${userConfig.password}@cluster0-wm8kw.mongodb.net/my_database`, {
+mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0-wm8kw.mongodb.net/my_database`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -57,9 +57,9 @@ app.use(flash()) //flash requires session
 //app.use(validateMiddleWare) // doing this way, validateMiddleware will be executed for all requests
 app.use("/posts/store", validateMiddleWare); // doing this way, validateMiddleware will be executed for creating post request
 
-
-app.listen(4000, () => {
-  console.log("App listening on 4000");
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+  console.log(`App listening on ${PORT}`);
 });
 
 app.get("/", getAllPosts);
