@@ -14,6 +14,7 @@ const registerUser = async (req, res) => {
   try {
     //console.log(req.body)
     await User.create(req.body);
+    await logInUser(req, res) //we want the user who just registered to automatically log in the system
     res.redirect("/");
   } catch (err) {
     //console.log(Object.keys(err))

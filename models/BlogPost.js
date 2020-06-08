@@ -8,9 +8,10 @@ const BlogPostSchema = new Schema({ //schema represents how a collection looks l
         type: Date,
         default: new Date()
     },
-    username: {
-        type: String,
-        default: 'Haruki Murakami'
+    userid: {
+        type: mongoose.Schema.Types.ObjectId, //the value of userid needs to be a valid Mongo ObjectId
+        ref: 'User', //referencing to the User collection
+        required: true
     },
     image: {
         type: String,
