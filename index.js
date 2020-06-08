@@ -4,6 +4,7 @@ const ejs = require("ejs"); //helps to dynamically render HTML instead of just h
 const bodyParser = require("body-parser"); //parse incoming request bodies and make the form data form available under req.body
 const fileUpload = require("express-fileupload");
 const expressSession = require("express-session");
+const flash = require("connect-flash") //store messages between requests and flush them after the next request is called
 
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/my_database", {
@@ -34,8 +35,6 @@ app.use(express.static("public")); //register a public folder in our static file
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(fileUpload());
-//app.use(validateMiddleWare) // doing this way, validateMiddleware will be executed for all requests
-app.use("/posts/store", validateMiddleWare); // doing this way, validateMiddleware will be executed for creating post request
 
 app.use(
   expressSession({
@@ -52,6 +51,11 @@ app.use((req, res, next) => {
   loggedIn = !!req.session.userId;
   next();
 });
+
+app.use(flash()) //flash requires session
+//app.use(validateMiddleWare) // doing this way, validateMiddleware will be executed for all requests
+app.use("/posts/store", validateMiddleWare); // doing this way, validateMiddleware will be executed for creating post request
+
 
 app.listen(4000, () => {
   console.log("App listening on 4000");

@@ -27,8 +27,15 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <form name="registerUser" id="registerUserForm" action='/users/store' method='POST' enctype="multipart/form-data"
-          novalidate>
+        <% if(errors && errors.length > 0){ %>
+        <ul class="list-group"></ul>
+        <% errors.map(err => { %>
+        <li class="list-group-item list-group-item-danger"><%= err %></li>
+        <% }) %>
+        </ul>
+        <% } %>
+        <form name="registerUser" id="registerUserForm" action='/users/store' method='POST'
+          enctype="multipart/form-data" novalidate>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Username</label>

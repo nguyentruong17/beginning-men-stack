@@ -1,13 +1,16 @@
 const BlogPost = require('../models/BlogPost.js')
 const path = require('path')
 const { v4: uuidv4 } = require("uuid");
-
+const VALIDATION_ERR_KEY = 'VALIDATION_ERR_KEY'
 const newPost = (req, res) => {
-  res.render("create");
+  //console.log('NEW')
+  
+  //console.log(req.flash(VALIDATION_ERR_KEY))
+  res.render("create", { errors: req.flash(VALIDATION_ERR_KEY) });
 };
 
 const createPost = async (req, res) => {
-  //console.log(req.body)
+  //console.log('CREATE')
 
   if (req.files) {
     let image = req.files.image;
